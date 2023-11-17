@@ -1,2 +1,0 @@
-type: mongo
-connection_string: <% config.mongo_url %>

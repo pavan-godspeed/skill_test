@@ -1,0 +1,8 @@
+http.post./publish-to-kafka:
+  fn: kafka 
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            type: string

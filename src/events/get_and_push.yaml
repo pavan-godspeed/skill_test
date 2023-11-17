@@ -1,6 +1,6 @@
 http.post./third-party/get-data:
   authn: true
-  fn: get_data
+  fn: push_to_mongo
   responses:
     200:
       content:

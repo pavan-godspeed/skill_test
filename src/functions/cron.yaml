@@ -1,5 +1,7 @@
 summary: doc from mongo
 tasks: 
   - id: cron 
-    fn: datasource.mongo.find
-    args: {} 
+    fn: datasource.api.get
+    args: 
+      headers:
+        Authorization: <js%"Bearer " + config.access_token%>

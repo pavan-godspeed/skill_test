@@ -1,0 +1,30 @@
+summary:
+on_error:
+  continue: false
+  log_attributes:
+    error_message: <%outputs.transform_error.message%>
+    error_type: "Internal server error"
+  response:
+    code: 500
+    success: false 
+    data: "Check the workflow logic"
+tasks:
+  - id: data_from_third_party_1
+    fn: datasource.api.get
+    args: {}
+
+  - id: data_from_third_party_2
+    fn: com.gs.transform
+    args: 
+      success: true
+      code: 200
+      data: <%outputs.data_from_third_party_1.data.response.docs%>
+
+  - id: filtering_sensitive_data
+    fn: filter
+    args: <%outputs.data_from_third_party_2.data%>
+
+  - id: pushing_to_mongo
+    fn: datasource.mongo.Opinion.createMany
+    args: 
+      data: <%outputs.filtering_sensitive_data.data%>

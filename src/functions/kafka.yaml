@@ -1,0 +1,19 @@
+summary:
+tasks:
+  - id: get_data 
+    fn: datasource.mongo.Opinion.findMany
+    args: 
+      data: {}
+
+  - id: publishing_to_kafka
+    fn: datasource.kafka.producer
+    args:
+      topic: "kafka_producer1"
+      message: <%outputs.get_data.data[0]%>
+
+  - id: published
+    fn: com.gs.transform 
+    args: 
+      code: 200
+      success: true 
+      data: "data successfully published to Kafka."

@@ -1,0 +1,8 @@
+http.get./get_all:
+  fn: get_all 
+  responses:
+    200:
+      content:
+        application/json:
+          schema: 
+            type: array 

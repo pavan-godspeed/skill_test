@@ -1,0 +1,5 @@
+summary:
+tasks:
+  - id: get_data 
+    fn: datasource.mongo.Opinion.findMany
+    args: {}  

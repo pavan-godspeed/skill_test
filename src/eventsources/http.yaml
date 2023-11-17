@@ -1,6 +1,8 @@
 type: express
 port: 3000
+docs:
+  endpoint: /
 jwt:
-  issuer: pavan_iss #iss
-  audience: pavan_aud #aud
+  issuer: pavan #iss
+  audience: pavan #aud
   secretOrKey: pavan

@@ -1,46 +1,3 @@
-BusinessDay:
-  type: object
-  properties:
-    abstract:
-      type: string
-      nullable: true
-    webUrl:
-      type: string
-      nullable: true
-    snippet:
-      type: string
-      nullable: true
-    leadParagraph:
-      type: string
-      nullable: true
-    source:
-      type: string
-      nullable: true
-    headline:
-      type: string
-      nullable: true
-    keywords:
-      type: object
-      nullable: true
-    pubDate:
-      type: string
-      format: date-time
-      nullable: true
-    documentType:
-      type: string
-      nullable: true
-    byline:
-      type: string
-      nullable: true
-    typeOfMaterial:
-      type: string
-      nullable: true
-    wordCount:
-      type: integer
-      nullable: true
-    uri:
-      type: string
-      nullable: true
 Opinion:
   type: object
   properties:
@@ -65,12 +22,29 @@ Opinion:
     source:
       type: string
       nullable: true
+    multimedia:
+      type: array
+      items:
+        type:
+          - number
+          - string
+          - boolean
+          - object
+          - array
+          - 'null'
     headline:
-      type: string
-      nullable: true
-    keywords:
       type: object
       nullable: true
+    keywords:
+      type: array
+      items:
+        type:
+          - number
+          - string
+          - boolean
+          - object
+          - array
+          - 'null'
     pubDate:
       type: string
       format: date-time
@@ -82,7 +56,7 @@ Opinion:
       type: string
       nullable: true
     byline:
-      type: string
+      type: object
       nullable: true
     typeOfMaterial:
       type: string

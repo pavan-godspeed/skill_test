@@ -1,2 +1,2 @@
-cron.* * * * *./Asian.kolkota:
+cron.* * * * *.Asia/Kolkata:
   fn: cron

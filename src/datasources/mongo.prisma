@@ -1,0 +1,66 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+model Headline {
+  id             String @id @map("_id") @default(auto()) @db.ObjectId
+  opinion        Opinion? @relation(fields: [opinion_id], references: [id])
+  opinion_id      String? @db.ObjectId @unique
+  main           String?
+  kicker         String?
+  content_kicker  String?
+  print_headline  String?
+  name           String?
+  seo            String?
+  sub            String?
+}
+
+model BylinePerson {
+  id          String @id @map("_id") @default(auto()) @db.ObjectId
+  byline      Byline? @relation(fields: [byline_id], references: [id])
+  byline_id    String? @db.ObjectId
+  firstname   String?
+  middlename  String?
+  lastname    String?
+  qualifier   String?
+  title       String?
+  role        String?
+  organization String?
+  rank        Int?
+}
+
+model Byline {
+  id       String @id @map("_id") @default(auto()) @db.ObjectId
+  person   BylinePerson[]
+  original      String?
+  organization  String?
+  opinion       Opinion? @relation(fields: [opinion_id], references: [id])
+  opinion_id     String? @db.ObjectId @unique
+}
+
+// Main Opinion model
+model Opinion {
+  id            String     @id @map("_id") @default(auto()) @db.ObjectId // Use MongoDB's ObjectId
+  abstract      String?
+  web_url        String?
+  snippet       String?
+  lead_paragraph String?
+  print_section  String?
+  print_page     String?
+  source        String?
+  headline      Headline?
+  byline        Byline?
+  pub_date       String?
+  document_type  String?
+  news_desk      String?
+  section_name    String?
+  type_of_material String?
+  word_count     Int?
+  uri           String?
+}
